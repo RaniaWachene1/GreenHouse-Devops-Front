@@ -1,0 +1,92 @@
+.mat-dialog-container {
+    width: 100% !important;
+    max-width: 600px !important;
+    margin: auto !important;
+}
+
+.full-width {
+    width: 100% !important;
+}
+
+mat-form-field {
+    margin-bottom: 16px !important;
+}
+
+h1 {
+    font-size: 24px !important;
+    font-weight: bold !important;
+    color: #333 !important;
+    text-align: center !important;
+    margin-bottom: 16px !important;
+}
+
+p {
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #666 !important;
+    margin-top: 16px !important;
+}
+
+.mat-radio-group {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.mat-radio-button {
+    margin-bottom: 8px !important;
+}
+
+.mat-dialog-actions {
+    display: flex !important;
+    justify-content: center !important; /* Center the buttons */
+    margin-top: 16px !important;
+}
+
+button[mat-dialog-close] {
+    background-color: #3fb54f !important; /* Green background */
+    color: #fff !important; /* White text */
+    padding: 8px 16px !important;
+    margin-left: 8px !important;
+    border-radius: 4px !important;
+    border: none !important; /* Remove border */
+}
+
+button[mat-dialog-close]:hover {
+    background-color: #36a244 !important; /* Darker green on hover */
+}
+
+button[mat-dialog-close]:first-child {
+    background-color: #f1f1f1 !important;
+    color: #333 !important;
+}
+
+button[mat-dialog-close]:first-child:hover {
+    background-color: #ddd !important;
+}
+
+.flex-container {
+    display: flex !important;
+    gap: 16px !important; /* Space between the items */
+}
+
+.flex-item {
+    flex: 1 !important;
+    min-width: 100px !important; /* Ensure a minimum width */
+}
+
+.radio-group {
+    display: flex !important;
+    flex-direction: column !important;
+    margin-bottom: 16px !important;
+    gap: 8px !important; /* Space between the radio buttons */
+}
+
+.icon-container {
+    text-align: center !important;
+    margin: 16px 0 !important;
+}
+
+.icon {
+    width: 150px !important; /* Adjust the width to make the icon bigger */
+    height: 150px !important; /* Adjust the height to make the icon bigger */
+}

@@ -1,0 +1,20 @@
+
+<div class="dialog-header">
+    <h2 mat-dialog-title class="dialog-title">Add equipment data.</h2>
+    <button mat-icon-button class="close-button" (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Power Rating (kW)</mat-label>
+    <input matInput [(ngModel)]="powerRating" type="number">
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Annual Usage Hours</mat-label>
+    <input matInput [(ngModel)]="annualUsageHours" type="number">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="actions-centered">
+    <button mat-raised-button class="btn btn-primary mb-3 rounded-btn save-button" (click)="onSubmit()">Save</button>
+  </div>

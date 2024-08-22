@@ -1,0 +1,175 @@
+/* Center align the form and make it responsive */
+.mat-dialog-container {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  mat-form-field {
+    margin-bottom: 16px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+    margin-top: 16px;
+  }
+  
+  .mat-radio-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mat-radio-button {
+    margin-bottom: 8px;
+  }
+  
+  .mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+  
+  button[mat-dialog-close] {
+    background-color: #3fb54f;
+    color: #fff;
+    padding: 8px 16px;
+    margin-left: 8px;
+    border-radius: 4px;
+  }
+  
+  button[mat-dialog-close]:hover {
+    background-color: #3fb54f;
+  }
+  
+  button[mat-dialog-close]:first-child {
+    background-color: #f1f1f1;
+    color: #333;
+  }
+  
+  button[mat-dialog-close]:first-child:hover {
+    background-color: #ddd;
+  }
+  
+  .flex-container {
+    display: flex;
+    gap: 16px; /* Space between the items */
+  }
+  
+  .flex-item {
+    flex: 1;
+    min-width: 100px; /* Ensure a minimum width */
+  }
+  
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Space between the radio buttons */
+  }
+  
+  mat-radio-button {
+    margin-bottom: 8px; /* Space below each radio button */
+  }
+  
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+  
+  .radio-group mat-radio-button {
+    margin-bottom: 8px;
+  }
+  
+  .icon-container {
+    text-align: center;
+    margin: 16px 0;
+  }
+  
+  .icon {
+    width: 150px; /* Adjust the width to make the icon bigger */
+    height: 150px; /* Adjust the height to make the icon bigger */
+  }
+  
+  /* Additional CSS for displaying items next to each other */
+  .equipment-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .equipment-item {
+    width: calc(33% - 20px); /* Adjust the width as needed */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .equipment-header {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between icon and name */
+  }
+  
+  .equipment-icon {
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    font-size: 24px;
+  }
+  
+  .equipment-divider {
+    margin: 10px 0;
+  }
+  
+  .equipment-details {
+    margin-bottom: 10px;
+  }
+  
+  .equipment-footer {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .equipment-name {
+    color: black; /* Set text color to black */
+    font-weight: bold; /* Make text bold */
+  }
+  
+  .equipment-detail {
+    color: black; /* Set text color to black */
+  }
+  
+  .equipment-footer button {
+    margin-top: 10px;
+  }
+  .location-title {
+    font-size: 44px; /* Bigger font size */
+    font-weight: bold; /* Bold text */
+    margin-bottom: 30px;
+    text-align: center; /* Centered text */
+}
+.bold-black-text {
+    font-weight: bold;
+    color: black;
+    margin-right: 10px;
+}

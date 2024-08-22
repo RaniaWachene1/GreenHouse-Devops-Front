@@ -1,0 +1,64 @@
+.black-title {
+    color: black;
+    font-weight: bold;
+  }
+  
+  .equipment-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .equipment-item {
+    width: 250px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Ensures the content stacks vertically within each item */
+    justify-content: space-between; /* Distributes space evenly */
+  }
+  
+  .equipment-header {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between icon and name */
+  }
+  
+  .equipment-icon {
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    font-size: 24px;
+  }
+  
+  .equipment-divider {
+    margin: 10px 0;
+  }
+  
+  .equipment-details {
+    margin-bottom: 10px;
+  }
+  
+  .equipment-footer {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .equipment-name {
+    color: black; /* Set text color to black */
+    font-weight: bold; /* Make text bold */
+  }
+  
+  .equipment-detail {
+    color: black; /* Set text color to black */
+  }
+  
+  .equipment-footer button {
+    margin-top: 10px;
+  }
+  

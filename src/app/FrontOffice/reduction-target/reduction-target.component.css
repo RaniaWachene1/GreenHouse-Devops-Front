@@ -1,0 +1,103 @@
+.container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-weight: bold;
+    color: black;
+    margin-right: 10px;
+}
+
+.edit-btn {
+    background-color: #53a92c;
+    border-color: #53a92c;
+    color: white;
+    margin-left: 30px;
+}
+
+.edit-btn:hover {
+    margin-left: 20px;
+    background-color: #3f8a24;
+    border-color: #3f8a24;
+}
+
+.reduction-info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.reduction-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: 18%;
+    margin: 10px 0;
+}
+
+.reduction-item h5 {
+    margin-bottom: 10px;
+}
+.container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.reduction-info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.reduction-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: 18%;
+    margin: 10px 0;
+}
+
+.reduction-item h5 {
+    margin-bottom: 10px;
+}
+
+.reduction-item .value {
+    font-weight: bold;
+    color: black;
+}
+
+.btn-primary {
+    background-color: #53a92c;
+    border-color: #53a92c;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #3f8a24;
+    border-color: #3f8a24;
+}
+
+.title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-weight: bold;
+    color: black;
+}
+
+.edit-btn {
+    margin-left: auto;
+}

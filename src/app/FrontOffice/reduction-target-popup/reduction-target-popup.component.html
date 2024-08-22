@@ -1,0 +1,19 @@
+<div class="dialog-header">
+    <h2 mat-dialog-title class="dialog-title">Edit Target</h2>
+    <button mat-icon-button class="close-button" (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Target End Year</mat-label>
+    <input matInput [(ngModel)]="data.endYear" type="number">
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Reduction Ambition</mat-label>
+    <input matInput [(ngModel)]="data.reductionAmbition" type="number">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="actions-centered">
+    <button mat-raised-button class="btn btn-primary mb-3 rounded-btn save-button" (click)="onSave()">Save</button>
+  </div>
