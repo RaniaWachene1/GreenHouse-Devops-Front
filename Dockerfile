@@ -29,7 +29,7 @@ FROM nginx:latest
 COPY --from=build /app/dist/gh-front-end /usr/share/nginx/html
 
 # Copy custom Nginx configuration
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY nginx/etc/conf.d/default.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80
 EXPOSE 80
