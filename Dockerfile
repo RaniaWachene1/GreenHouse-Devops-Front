@@ -20,7 +20,7 @@ RUN npm install --force
 COPY . .
 
 # Build the Angular application for production
-RUN ng build --configuration production
+RUN ng build 
 
 # Use a lightweight Nginx image to serve the Angular app
 FROM nginx:latest
