@@ -25,10 +25,13 @@ RUN ng build
 # Use a lightweight Nginx image to serve the Angular app
 FROM nginx:latest
 
+# Remove default Nginx content
+RUN rm -rf /usr/share/nginx/html/*
+
 # Copy the built Angular app from the previous stage to Nginx's web root directory
 COPY --from=build /app/dist/gh-front-end /usr/share/nginx/html
 
-# Copy custom Nginx configuration
+# Copy custom Nginx configuration (if any)
 COPY src/nginx/etc/conf.d/default.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80
