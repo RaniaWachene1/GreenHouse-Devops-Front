@@ -7,7 +7,7 @@ import { Vehicle } from '../models/vehicle.model';
   providedIn: 'root'
 })
 export class VehicleService {
-  private apiUrl = 'http://localhost:8087/api/vehicles';
+  private apiUrl = '/api/vehicles';
 
   constructor(private http: HttpClient) {}
 

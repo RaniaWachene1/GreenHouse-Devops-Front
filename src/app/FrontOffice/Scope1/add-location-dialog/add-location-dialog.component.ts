@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -6,8 +7,6 @@ import { Location as CustomLocation } from '../../../models/location';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../../services/auth.service';
 import { countries } from './country-data-store';
-
-declare var google: any;
 
 @Component({
   selector: 'app-add-location-dialog',
@@ -40,7 +39,8 @@ export class AddLocationDialogComponent implements OnInit {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddLocationDialogComponent>,
     private scope1Service: Scope1Service,
-    private authService: AuthService
+    private authService: AuthService,
+    private http: HttpClient // For HTTP requests
   ) {
     this.locationForm = this.fb.group({
       nameLocation: ['', Validators.required],
@@ -69,8 +69,6 @@ export class AddLocationDialogComponent implements OnInit {
     this.locationForm.get('country')?.valueChanges.subscribe(country => {
       this.updateStates(country);
     });
-
-
   }
 
   updateStates(countryName: string): void {
@@ -79,30 +77,24 @@ export class AddLocationDialogComponent implements OnInit {
     this.locationForm.get('state')?.setValue('');
   }
 
-
-
   onAddLocation(): void {
     if (this.locationForm.valid && this.userId !== undefined) {
       const location = this.locationForm.value as CustomLocation;
       const fullAddress = `${location.addressLocation}, ${location.city}, ${location.state}, ${location.country}`;
+      
       this.geocodeAddress(fullAddress, (lat, lng) => {
         if (lat !== 0 && lng !== 0) {
           this.locationForm.patchValue({ latitude: lat, longitude: lng });
           location.latitude = lat;
           location.longitude = lng;
-          console.log(`Geocoded address to: ${lat}, ${lng}`);
+
+          console.log(`Geocoded Latitude: ${lat}, Longitude: ${lng}`);
           this.scope1Service.addLocation(location, this.userId!).subscribe(
             newLocation => {
               this.dialogRef.close(newLocation);
             },
             (error: HttpErrorResponse) => {
               console.error('Error adding location:', error);
-              if (error.error instanceof ErrorEvent) {
-                console.error('Client-side error:', error.error.message);
-              } else {
-                console.error(`Server-side error: ${error.status} - ${error.message}`);
-                console.error('Error details:', error.error);
-              }
             }
           );
         } else {
@@ -113,16 +105,24 @@ export class AddLocationDialogComponent implements OnInit {
   }
 
   geocodeAddress(address: string, callback: (lat: number, lng: number) => void): void {
-    const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'address': address }, (results: any, status: any) => {
-      if (status === 'OK') {
-        const location = results[0].geometry.location;
-        callback(location.lat(), location.lng());
-      } else {
-        console.error('Geocode was not successful for the following reason: ' + status);
+    const mapTilerGeocodingUrl = `https://api.maptiler.com/geocoding/${encodeURIComponent(address)}.json?key=0rsHEHwrx8g6tDwIMDAc`;
+
+    this.http.get(mapTilerGeocodingUrl).subscribe(
+      (response: any) => {
+        if (response && response.features && response.features.length > 0) {
+          const [lng, lat] = response.features[0].geometry.coordinates;
+          console.log(`Geocoded address to Latitude: ${lat}, Longitude: ${lng}`);
+          callback(lat, lng); // Return the latitude and longitude
+        } else {
+          console.error('No results found for the given address.');
+          callback(0, 0); // Return 0, 0 if no result found
+        }
+      },
+      error => {
+        console.error('Geocoding API error:', error);
         callback(0, 0);
       }
-    });
+    );
   }
 
   onClose(): void {

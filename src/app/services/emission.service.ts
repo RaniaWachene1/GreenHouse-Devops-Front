@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class EmissionService {
 
-  private baseUrl = 'http://localhost:8087/api/emissions';
+  private baseUrl = '/api/emissions';
 
   constructor(private http: HttpClient) { }
 

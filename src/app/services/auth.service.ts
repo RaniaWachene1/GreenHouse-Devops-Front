@@ -14,7 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8087/api/auth';
+  private baseUrl = '/api/auth';
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser: Observable<User | null>;
 

@@ -1,10 +1,13 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { AddLocationDialogComponent } from '../add-location-dialog/add-location-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Scope1Service } from '../../../services/scope1.service';
 import { AuthService } from '../../../services/auth.service';
 import { Location } from '../../../models/location';
+import { AddLocationDialogComponent } from '../add-location-dialog/add-location-dialog.component';
 import { LocationDetailDialogComponent } from '../location-detail-dialog/location-detail-dialog.component';
+
+// Import MapLibre
+import maplibregl from 'maplibre-gl';
 
 @Component({
   selector: 'app-locations',
@@ -13,11 +16,10 @@ import { LocationDetailDialogComponent } from '../location-detail-dialog/locatio
 })
 export class LocationsComponent implements OnInit, AfterViewInit {
   @ViewChild('mapContainer', { static: false }) mapContainer!: ElementRef;
-  map!: google.maps.Map;
-  center: google.maps.LatLngLiteral = { lat: 36.8456, lng: 10.1987 }; // Default center
-  zoom = 15; // Default zoom level
+  map!: any;
+  center: [number, number] = [10.1987, 36.8456]; // Default center for MapTiler (longitude, latitude)
+  zoom = 12; // Default zoom level
   locations: Location[] = [];
-  searchText = '';
   userId: number | undefined;
 
   constructor(
@@ -36,11 +38,18 @@ export class LocationsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const mapOptions: google.maps.MapOptions = {
-      center: this.center,
-      zoom: this.zoom
-    };
-    this.map = new google.maps.Map(this.mapContainer.nativeElement, mapOptions);
+    this.initializeMap();
+  }
+
+  initializeMap(): void {
+    this.map = new maplibregl.Map({
+      container: this.mapContainer.nativeElement, // Container ID
+      style: 'https://api.maptiler.com/maps/basic-v2/style.json?key=0rsHEHwrx8g6tDwIMDAc', // MapTiler style URL with API key
+      center: this.center, // Starting position [lng, lat]
+      zoom: this.zoom // Starting zoom level
+    });
+
+    this.addMarkersToMap(); // Add markers once the map is initialized
   }
 
   loadUserLocations(): void {
@@ -54,11 +63,9 @@ export class LocationsComponent implements OnInit, AfterViewInit {
 
   addMarkersToMap(): void {
     this.locations.forEach(location => {
-      const marker = new google.maps.Marker({
-        position: { lat: location.latitude!, lng: location.longitude! },
-        map: this.map,
-        title: location.nameLocation
-      });
+      const marker = new maplibregl.Marker()
+        .setLngLat([location.longitude!, location.latitude!]) // Note: MapTiler uses [longitude, latitude]
+        .addTo(this.map); // Add marker to map
     });
   }
 
@@ -84,18 +91,16 @@ export class LocationsComponent implements OnInit, AfterViewInit {
   }
 
   addMarkerToMap(location: Location): void {
-    const marker = new google.maps.Marker({
-      position: { lat: location.latitude!, lng: location.longitude! },
-      map: this.map,
-      title: location.nameLocation
-    });
-    this.map.setCenter(marker.getPosition() as google.maps.LatLng);
-    this.map.setZoom(18); // Set zoom level explicitly here if needed
+    const marker = new maplibregl.Marker()
+      .setLngLat([location.longitude!, location.latitude!])
+      .addTo(this.map);
+    this.map.setCenter([location.longitude!, location.latitude!]);
+    this.map.setZoom(15); // Zoom in on the newly added location
   }
 
   zoomToLocation(location: Location): void {
-    this.map.setCenter({ lat: location.latitude!, lng: location.longitude! });
-    this.map.setZoom(18); // Set zoom level when icon is clicked
+    this.map.setCenter([location.longitude!, location.latitude!]);
+    this.map.setZoom(15); // Zoom in when a location is selected
   }
 
   openLocationDetails(location: Location): void {
@@ -114,11 +119,7 @@ export class LocationsComponent implements OnInit, AfterViewInit {
           this.locations[index] = result;
         }
       }
-      this.addMarkersToMap();
+      this.addMarkersToMap(); // Refresh markers
     });
-  }
-
-  continue(): void {
-    // Logic to continue to the next step
   }
 }

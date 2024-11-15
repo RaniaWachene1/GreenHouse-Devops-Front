@@ -7,7 +7,7 @@ import { Location as CustomLocation } from '../models/location';
   providedIn: 'root'
 })
 export class Scope1Service {
-  private baseUrl = 'http://localhost:8087/api/locations';
+  private baseUrl = '/api/locations';
 
   constructor(private http: HttpClient) { }
 

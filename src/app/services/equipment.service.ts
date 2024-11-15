@@ -8,7 +8,7 @@ import { Equipment } from '../models/equipment';
 })
 export class EquipmentService {
 
-  private baseUrl = 'http://localhost:8087/api/equipment';
+  private baseUrl = '/api/equipment';
 
   constructor(private http: HttpClient) { }
 
